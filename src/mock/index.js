@@ -1,8 +1,10 @@
-console.log('[antd-pro] mock mounting')
-const Mock = require('mockjs')
-require('./services/user')
+import { setup } from 'mockjs'
+import './services/user'
 
-Mock.setup({
+console.log('[antd-pro] mock mounting')
+
+setup({
   timeout: 800 // setter delay time
 })
+
 console.log('[antd-pro] mock mounted')

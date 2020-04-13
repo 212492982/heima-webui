@@ -45,8 +45,13 @@ export default {
     login () {
       this.$refs.loginFormRef.validate(async valid => {
         if (!valid) return
-        const result = await this.$http.post('user/login', this.loginForm)
-        console.log(result)
+        const { data: res } = await this.$http.post('user/login', this.loginForm)
+        if (res.code !== '000') {
+          return this.$message.error(res.msg)
+        }
+        this.$message.success(res.msg + ' - token:' + res.token)
+        window.sessionStorage.setItem('token', res.token)
+        this.$router.push('/home')
       })
     }
   }
