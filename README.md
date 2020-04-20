@@ -160,3 +160,23 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
         { path: '/login', componets: Login }
       ]
     ```
+  - 路由+菜单+面包屑
+menu = bone + scope + menuPid + menuId + menuName
+operate = bone + operateCode + operateId + operateName
+operateIntfMap = operateId + intf
+
+menuRight = role + menuId
+operateRight = menuRight + operateId
+intfRight = role + intf
+
+
+menuInfo = role + bone + scope + menuName
+
+operateInfo = role + bone + scope + operateName
+  - 列表组件
+    - 列表
+    - 新增
+    - 修改
+    - 查看
+    - 删除
+    - 导出

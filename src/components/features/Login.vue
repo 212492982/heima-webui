@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import { login } from '@/api/user'
+
 export default {
   data () {
     return {
@@ -45,13 +47,14 @@ export default {
     login () {
       this.$refs.loginFormRef.validate(async valid => {
         if (!valid) return
-        const { data: res } = await this.$http.post('user/login', this.loginForm)
-        if (res.code !== '000') {
-          return this.$message.error(res.msg)
-        }
-        this.$message.success(res.msg + ' - token:' + res.token)
-        window.sessionStorage.setItem('token', res.token)
-        this.$router.push('/home')
+        login(this.loginForm).then(res => {
+          if (res.code !== '000') {
+            return this.$message.error(res.msg)
+          }
+          this.$message.success(res.msg + ' - token:' + res.token)
+          window.sessionStorage.setItem('token', res.token)
+          this.$router.push('/home')
+        })
       })
     }
   }
